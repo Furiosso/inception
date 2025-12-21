@@ -1,0 +1,59 @@
+services:
+  mariadb:
+    image: mariadb:1
+    container_name: mariadb
+    networks:
+      - inception
+    build: requirements/mariadb
+    env_file: .env
+    volumes:
+      - mariadb:/var/lib/mysql
+    restart: always
+    expose:
+      - "3306"
+  nginx:
+    image: nginx:1
+    container_name: nginx
+    volumes:
+      - wordpress:/var/www/wordpress
+      - ../secrets/inception.crt:/run/secrets/inception.crt:ro
+      - ../secrets/inception.key:/run/secrets/inception.key:ro
+    networks:
+      - inception
+    depends_on:
+      - wordpress
+    build: requirements/nginx
+    env_file: .env
+    ports:
+      - "443:443"
+    restart: always
+  wordpress:
+    image: wordpress:1
+    container_name: wordpress
+    env_file: .env
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - inception
+    build: requirements/wordpress
+    depends_on:
+      - mariadb
+    restart: on-failure
+    expose:
+      - "9000"
+volumes:
+  mariadb:
+    #driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dagimeno/data/wordpress_db
+  wordpress:
+    #driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dagimeno/data/wordpress_files
+networks:
+  inception:
+    driver: bridge
