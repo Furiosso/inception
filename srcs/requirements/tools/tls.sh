@@ -2,8 +2,6 @@
 
 set -e
 
-#PROJECT_ROOT="$(cd "$(dirname "$0")/../../.." && pwd)"
-#SECRETS_DIR="$PROJECT_ROOT/secrets"
 SECRETS_DIR="secrets"
 
 if [ ! -f "$SECRETS_DIR/inception.crt" ] || [ ! -f "$SECRETS_DIR/inception.key" ]; then

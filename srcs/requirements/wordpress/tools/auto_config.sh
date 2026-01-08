@@ -16,13 +16,17 @@ do
 	sleep 1
 done
 
+echo "Done!\n"
+
 if [ ! -f "$WP_PATH/wp-load.php" ]; then
+	mkdir -p "$WP_PATH"
+	chown -R www-data:www-data "$WP_PATH"
     wp core download \
         --path="$WP_PATH" \
         --allow-root
 fi
 
-if ! wp core is-installed --allow-root --path=$WP_PATH; then
+if ! wp core is-installed --allow-root --path=$WP_PATH ; then
 	wp config create --allow-root \
 		--dbname=$MYSQL_DATABASE \
 		--dbuser=$MYSQL_USER \

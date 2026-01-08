@@ -8,7 +8,7 @@ services:
     env_file: .env
     volumes:
       - mariadb:/var/lib/mysql
-    restart: always
+    restart: unless-stopped
     expose:
       - "3306"
   nginx:
@@ -43,13 +43,13 @@ services:
       - "9000"
 volumes:
   mariadb:
-    #driver: local
+    driver: local
     driver_opts:
       type: none
       o: bind
       device: /home/dagimeno/data/wordpress_db
   wordpress:
-    #driver: local
+    driver: local
     driver_opts:
       type: none
       o: bind

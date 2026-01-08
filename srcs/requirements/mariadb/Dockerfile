@@ -14,5 +14,7 @@ RUN chmod 755 /usr/local/bin/mariadb.sh
 
 EXPOSE 3306
 
+RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql
+
 ENTRYPOINT ["/usr/local/bin/mariadb.sh"]
-CMD ["mysqld"]
+CMD ["mysqld_safe"]
