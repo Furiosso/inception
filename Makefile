@@ -28,7 +28,7 @@ clean:
 
 fclean: clean
 	@docker system prune -af --volumes
-	@rm -f secrets/inception.*
+	@rm -rf secrets
 	@docker volume ls -q | grep inception | xargs -r docker volume rm
 
 re: fclean all

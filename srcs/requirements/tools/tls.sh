@@ -4,7 +4,9 @@ set -e
 
 SECRETS_DIR="secrets"
 
-if [ ! -f "$SECRETS_DIR/inception.crt" ] || [ ! -f "$SECRETS_DIR/inception.key" ]; then
+#if [ ! -f "$SECRETS_DIR/inception.crt" ] || [ ! -f "$SECRETS_DIR/inception.key" ]; then
+if [ ! -d "$SECRETS_DIR" ]; then
+	mkdir "$SECRETS_DIR"
 	openssl req -x509 -nodes \
 		-newkey rsa:2048 \
   		-keyout "$SECRETS_DIR/inception.key" \
