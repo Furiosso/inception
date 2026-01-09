@@ -44,7 +44,8 @@ services:
   redis:
     image: redis:1
     container_name: redis
-    env_file: .env
+    depends_on:
+      - wordpress
     volumes:
       - redis:/data
     networks:
@@ -53,6 +54,22 @@ services:
     expose:
       - "6379"
     restart: always
+  ftp:
+    image: ftp:1
+    container_name: ftp
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - inception
+    env_file:
+      - .env
+    build: requirements/bonus/ftp
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
+    restart: unless-stopped
 volumes:
   mariadb:
     driver: local
