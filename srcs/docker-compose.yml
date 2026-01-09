@@ -41,6 +41,18 @@ services:
     restart: on-failure
     expose:
       - "9000"
+  redis:
+    image: redis:1
+    container_name: redis
+    env_file: .env
+    volumes:
+      - redis:/data
+    networks:
+      - inception
+    build: requirements/bonus/redis
+    expose:
+      - "6379"
+    restart: always
 volumes:
   mariadb:
     driver: local
@@ -54,6 +66,12 @@ volumes:
       type: none
       o: bind
       device: /home/dagimeno/data/wordpress_files
+  redis:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dagimeno/data/redis_db
 networks:
   inception:
     driver: bridge

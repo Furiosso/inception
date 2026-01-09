@@ -16,8 +16,6 @@ do
 	sleep 1
 done
 
-echo "Done!\n"
-
 if [ ! -f "$WP_PATH/wp-load.php" ]; then
 	mkdir -p "$WP_PATH"
 	chown -R www-data:www-data "$WP_PATH"
@@ -51,6 +49,15 @@ if ! wp core is-installed --allow-root --path=$WP_PATH ; then
 		--user_pass="$WP_USER_PASSWORD" \
 		--role=author \
 		--allow-root
+
+	wp plugin install redis-cache --activate --path=$WP_PATH --allow-root
+	wp config set WP_REDIS_HOST \"redis\" --type=constant --raw --path=$WP_PATH --allow-root
+    wp config set WP_REDIS_PORT \"6379\" --type=constant --raw --path=$WP_PATH --allow-root
+    wp config set WP_REDIS_PREFIX \"inception\" --type=constant --raw --path=$WP_PATH --allow-root
+    wp config set WP_REDIS_DATABASE \"0\" --type=constant --raw --path=$WP_PATH --allow-root
+    wp config set WP_REDIS_TIMEOUT \"1\" --type=constant --raw --path=$WP_PATH --allow-root
+    wp config set WP_REDIS_READ_TIMEOUT \"1\" --type=constant --raw --path=$WP_PATH --allow-root
+	wp redis enable --path=$WP_PATH --allow-root
 fi
 
 mkdir -p /run/php

@@ -4,7 +4,7 @@ COMPOSE = docker compose -f srcs/docker-compose.yml
 all: up
 
 up:
-	@mkdir -p /home/dagimeno/data/wordpress_db /home/dagimeno/data/wordpress_files
+	@mkdir -p /home/dagimeno/data/wordpress_db /home/dagimeno/data/wordpress_files /home/dagimeno/data/redis_db
 	@chmod +x ./srcs/requirements/tools/tls.sh
 	@./srcs/requirements/tools/tls.sh
 	@$(COMPOSE) up -d --build

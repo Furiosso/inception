@@ -10,6 +10,7 @@ RUN apt-get update \
 	php8.2-fpm \
 	php8.2-mysql \
 	mariadb-client \
+	php8.2-redis \
 	&& rm -rf /var/lib/apt/lists/* 
 
 COPY ./conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf
