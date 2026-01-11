@@ -80,7 +80,18 @@ services:
       - "8080:8080"
     networks:
       - inception
-
+  portainer:
+    image: portainer:1
+    container_name: portainer
+    build: requirements/bonus/portainer
+    volumes:
+      - portainer:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - inception
+    ports:
+      - "9443:9443"
+    restart: unless-stopped
 volumes:
   mariadb:
     driver: local
@@ -100,6 +111,12 @@ volumes:
       type: none
       o: bind
       device: /home/dagimeno/data/redis_db
+  portainer:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/dagimeno/data/portainer
 networks:
   inception:
     driver: bridge
