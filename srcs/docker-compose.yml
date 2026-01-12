@@ -63,8 +63,7 @@ services:
       - wordpress:/var/www/wordpress
     networks:
       - inception
-    env_file:
-      - .env
+    env_file: .env
     build: requirements/bonus/ftp
     ports:
       - "21:21"
@@ -84,6 +83,7 @@ services:
     image: portainer:1
     container_name: portainer
     build: requirements/bonus/portainer
+    env_file: .env
     volumes:
       - portainer:/data
       - /var/run/docker.sock:/var/run/docker.sock
