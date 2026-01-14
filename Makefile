@@ -33,4 +33,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all up down stop start restart clean fclean re logs
+.PHONY: all up build down stop start restart clean fclean re

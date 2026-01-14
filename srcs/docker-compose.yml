@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     expose:
       - "3306"
-    stop_grace_period: 3s
+    stop_grace_period: 1s
   nginx:
     image: nginx:1
     container_name: nginx
@@ -70,7 +70,7 @@ services:
       - "21:21"
       - "21000-21010:21000-21010"
     restart: unless-stopped
-    stop_grace_period: 3s
+    stop_grace_period: 1s
   adminer:
     image: adminer:1
     container_name: adminer
@@ -81,7 +81,7 @@ services:
       - "8080:8080"
     networks:
       - inception
-    stop_grace_period: 3s
+    stop_grace_period: 1s
   portainer:
     image: portainer:1
     container_name: portainer
@@ -95,7 +95,7 @@ services:
     ports:
       - "9443:9443"
     restart: unless-stopped
-    stop_grace_period: 3s
+    stop_grace_period: 1s
 volumes:
   mariadb:
     driver: local
