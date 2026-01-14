@@ -73,8 +73,6 @@ make
 
 ---
 
-### DOCUMENTO 9 — LÍNEA 4
-
 ```markdown
 This command builds all Docker images, creates the required volumes and network, and starts the infrastructure.
 To stop and clean up the containers, run:
@@ -83,16 +81,12 @@ make down
 
 ---
 
-### DOCUMENTO 9 — LÍNEA 9
-
 ```markdown
 ### Access
 - WordPress: `https://dagimeno.42.fr`
 - Static website (bonus): `https://dagimeno.42.fr/cv/`
 
 ---
-
-## DOCUMENTO 10 — Resources + AI usage
 
 ```markdown
 ## Resources
