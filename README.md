@@ -68,25 +68,21 @@ Docker volumes are used in this project to store MariaDB and WordPress data, ens
 
 From the root of the repository, run:
 
-```bash
+``` bash
 make
 
----
-
-```markdown
+```
+markdown
 This command builds all Docker images, creates the required volumes and network, and starts the infrastructure.
 To stop and clean up the containers, run:
 ```bash
 make down
 
----
-
-```markdown
+```
+markdown
 ### Access
 - WordPress: `https://dagimeno.42.fr`
 - Static website (bonus): `https://dagimeno.42.fr/cv/`
-
----
 
 ```markdown
 ## Resources
