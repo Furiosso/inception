@@ -79,12 +79,10 @@ To stop and clean up the containers, run:
 make down
 
 ```
-markdown
 ### Access
 - WordPress: `https://dagimeno.42.fr`
 - Static website (bonus): `https://dagimeno.42.fr/cv/`
 
-```markdown
 ## Resources
 
 ### Documentation and References
