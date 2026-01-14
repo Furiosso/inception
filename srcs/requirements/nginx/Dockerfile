@@ -7,9 +7,11 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& mkdir -p /var/run/nginx /var/www/wordpress \
 	&& chmod 755 /var/www/wordpress \
+	&& mkdir -p /var/www/cv \
 	&& chown -R www-data:www-data /var/www/wordpress
 
 COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY cv /var/www/cv
 
 EXPOSE 443
 
