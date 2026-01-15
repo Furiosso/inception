@@ -15,7 +15,7 @@ This project relies on Docker and Docker Compose to orchestrate a multi-service 
 ### Included Services
 
 - **Nginx**  
-  Acts as a reverse proxy and HTTPS server. It is the only service exposed to the host and handles TLS termination.
+  Acts as a reverse proxy and HTTPS server. It is the main service exposed to the host and handles TLS termination.
 
 - **WordPress (PHP-FPM)**  
   Hosts the WordPress application and communicates with the database through an internal Docker network.
@@ -36,7 +36,7 @@ This project relies on Docker and Docker Compose to orchestrate a multi-service 
   A container management interface used to monitor and manage Docker containers, images, networks, and volumes.
 
 - **Static Website (Bonus)**  
-  A simple static website written in HTML and CSS, served directly by Nginx without using PHP.
+  A simple static website showing my CV written in HTML and CSS, served directly by Nginx without using PHP.
 
 All services are connected through a **custom Docker bridge network**, allowing secure internal communication while preventing unnecessary exposure to the host system.
 
@@ -55,7 +55,7 @@ Environment variables are commonly used to configure applications at runtime and
 
 Docker Secrets provide a secure mechanism for managing sensitive information such as database passwords, WordPress credentials, and TLS certificates. Secrets are stored securely by Docker and mounted into containers at runtime as temporary in-memory files, reducing the risk of accidental exposure.
 
-In this project, Docker Secrets are used to handle sensitive credentials and cryptographic material, improving overall security and ensuring that confidential data is not hardcoded into images or committed to version control.
+In this project, s a simulation of Docker Secrets is used to handle the TLS key and certificate,  whereas an .env file containing the enviromental variables has been chosen to store the administrative credentials.
 
 ## Docker Network vs Host Network
 
@@ -63,7 +63,7 @@ Using the host network mode removes network isolation between containers and the
 
 Docker bridge networks provide an isolated virtual network layer where containers can communicate using internal DNS resolution and service names. Only explicitly exposed ports are accessible from the host, which reduces the attack surface and improves control over traffic flow.
 
-This project uses a dedicated Docker bridge network to ensure clean separation between services, secure internal communication, and predictable networking behavior, while exposing only the Nginx service to the host.
+This project uses a dedicated Docker bridge network to ensure clean separation between services, secure internal communication, and predictable networking behavior. Nginx and the static site are the only containers exposed to the host as a service; administrative services such as FTP, Adminer, and Portainer are accessible only via their respective exposed ports.
 
 ## Docker Volumes vs Bind Mounts
 
@@ -98,10 +98,10 @@ make down
 ```
 ### Access
 - WordPress: `https://dagimeno.42.fr`
-- Wordpress administration: `https://dagimeno.42.fr/wp-admin`
+- Wordpress administration: `https://dagimeno.42.fr/wp-admin/`
 - Adminer: `http://dagimeno.42.fr:8080`
-- Portainer: `https://dagimeno.42.fr/9443`
-- Static website (bonus): `https://dagimeno.42.fr/cv/`
+- Portainer: `https://dagimeno.42.fr:9443`
+- Static website: `https://dagimeno.42.fr/cv/`
 
 ## Resources
 
