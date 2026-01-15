@@ -15,7 +15,7 @@ Before starting, the following tools must be installed on the system:
 - GNU Make
 - Git
 
-Optional tools include a web browser for service access.
+Optional tools include a web browser for service access and a FTP client in order to make tests for the FTP bonus.
 
 This line must be included in the /etc/hosts file:
 
